@@ -1,5 +1,11 @@
+import { Footer } from './components/Footer'
+
 function App() {
-  return <div>dasdsadsad</div>
+  return (
+    <>
+      <Footer />
+    </>
+  )
 }
 
 export default App
