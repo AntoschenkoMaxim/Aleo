@@ -141,7 +141,7 @@ const mockdata = [
   },
 ]
 
-export function Footer() {
+export function HeaderMenu() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false)
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false)
@@ -166,7 +166,7 @@ export function Footer() {
   ))
 
   return (
-    <Box pb={120}>
+    <Box pb={60}>
       <Header height={60} px="md">
         <Group position="apart" sx={{ height: '100%' }}>
           <Group>
