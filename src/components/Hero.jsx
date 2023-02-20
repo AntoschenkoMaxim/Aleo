@@ -17,7 +17,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingBottom: theme.spacing.xl * 4,
+    paddingBottom: theme.spacing.xl,
   },
 
   content: {
@@ -78,12 +78,12 @@ export function Hero() {
         <div className={classes.inner}>
           <div className={classes.content}>
             <Title className={classes.title}>
-              A <span className={classes.highlight}>Quests</span> about <br />{' '}
+              <span className={classes.highlight}>Quests</span> about <br />{' '}
               Aleo Eco-System
             </Title>
             <Text color="dimmed" mt="md">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Educational quests to test your knowledge of ZKP and Aleo
+              technology
             </Text>
 
             <List
@@ -97,22 +97,19 @@ export function Hero() {
               }
             >
               <List.Item>
-                <b>Aleo Points</b> – lorem ipsum dolor sit amet, consectetur
-                adipiscing elit, sed do eiusmod tempor incididunt
+                <b>Aleo Points</b> – be one of the first to complete our quests
+                and get points (it is a means of payment in the Aleo Ambassador
+                program).
               </List.Item>
               <List.Item>
-                <b>NFT-collection</b> – orem ipsum dolor sit amet, consectetur
-                adipiscing elit, sed do eiusmod tempor incididunt
-              </List.Item>
-              <List.Item>
-                <b>Other Prizes</b> – orem ipsum dolor sit amet, consectetur
-                adipiscing elit, sed do eiusmod tempor incididunt
+                <b>NFT Collection</b> – art from the collection of early and
+                interested members of the Aleo community.
               </List.Item>
             </List>
 
             <Group mt={30}>
               <Button fullWidth size="md" className={classes.control}>
-                Get started
+                App
               </Button>
             </Group>
           </div>

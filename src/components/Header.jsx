@@ -171,7 +171,7 @@ export function HeaderMenu() {
         <Group position="apart" sx={{ height: '100%' }}>
           <Group>
             <Logo className={classes.logo} />
-            <Text weight={600} color="white">
+            <Text size={24} weight={700} color="white">
               Aleo Quests
             </Text>
           </Group>
@@ -238,12 +238,6 @@ export function HeaderMenu() {
                 </div>
               </HoverCard.Dropdown>
             </HoverCard>
-            <a href="#" className={classes.link}>
-              Learn
-            </a>
-            <a href="#" className={classes.link}>
-              Academy
-            </a>
           </Group>
 
           <Group className={classes.hiddenMobile}>
