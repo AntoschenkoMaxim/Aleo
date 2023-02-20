@@ -10,6 +10,7 @@ import {
   Button,
 } from '@mantine/core'
 import { IconGauge, IconUser, IconCookie } from '@tabler/icons-react'
+import { useState } from 'react'
 
 const mockdata = [
   {
@@ -84,6 +85,9 @@ const useStyles = createStyles((theme) => ({
 
 export function List() {
   const { classes, theme } = useStyles()
+
+  const [isActive, setIsActive] = useState()
+
   const features = mockdata.map((feature) => (
     <Card
       key={feature.title}
@@ -104,7 +108,9 @@ export function List() {
       >
         {feature.description}
       </Text>
-      <Button fullWidth>{feature.button}</Button>
+      <Button disabled={isActive} fullWidth>
+        {feature.button}
+      </Button>
     </Card>
   ))
   return (

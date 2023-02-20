@@ -17,6 +17,7 @@ import {
   Drawer,
   Collapse,
   ScrollArea,
+  Container,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { ReactComponent as Logo } from '../assets/logo.svg'
@@ -166,8 +167,8 @@ export function HeaderMenu() {
   ))
 
   return (
-    <Box pb={60}>
-      <Header height={60} px="md">
+    <Container pb={60}>
+      <Header height={60}>
         <Group position="apart" sx={{ height: '100%' }}>
           <Group>
             <Logo className={classes.logo} />
@@ -296,6 +297,6 @@ export function HeaderMenu() {
           </Group>
         </ScrollArea>
       </Drawer>
-    </Box>
+    </Container>
   )
 }
