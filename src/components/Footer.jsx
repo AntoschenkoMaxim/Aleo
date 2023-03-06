@@ -1,8 +1,8 @@
 import { createStyles, Container, Group, ActionIcon, Text } from '@mantine/core'
 import {
   IconBrandTwitter,
-  IconBrandYoutube,
-  IconBrandInstagram,
+  IconBrandDiscord,
+  IconBrandTelegram,
 } from '@tabler/icons-react'
 
 import { ReactComponent as Logo } from '../assets/logo.svg'
@@ -56,10 +56,10 @@ export function Footer() {
             <IconBrandTwitter size={18} stroke={1.5} />
           </ActionIcon>
           <ActionIcon size="lg">
-            <IconBrandYoutube size={18} stroke={1.5} />
+            <IconBrandDiscord size={18} stroke={1.5} />
           </ActionIcon>
           <ActionIcon size="lg">
-            <IconBrandInstagram size={18} stroke={1.5} />
+            <IconBrandTelegram size={18} stroke={1.5} />
           </ActionIcon>
         </Group>
       </Container>

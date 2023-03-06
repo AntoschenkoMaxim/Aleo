@@ -242,7 +242,7 @@ export function HeaderMenu() {
           </Group>
 
           <Group className={classes.hiddenMobile}>
-            <Button className={classes.button}>App</Button>
+            <Button className={classes.button}>TG bot</Button>
           </Group>
 
           <Burger
@@ -280,12 +280,6 @@ export function HeaderMenu() {
             </Center>
           </UnstyledButton>
           <Collapse in={linksOpened}>{links}</Collapse>
-          <a href="#" className={classes.link}>
-            Learn
-          </a>
-          <a href="#" className={classes.link}>
-            Academy
-          </a>
 
           <Divider
             my="sm"
@@ -293,7 +287,7 @@ export function HeaderMenu() {
           />
 
           <Group position="center" grow pb="xl" px="md">
-            <Button>App</Button>
+            <Button>TG bot</Button>
           </Group>
         </ScrollArea>
       </Drawer>

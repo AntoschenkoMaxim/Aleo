@@ -1,7 +1,5 @@
 import {
   createStyles,
-  Badge,
-  Group,
   Title,
   Text,
   Card,
@@ -33,6 +31,27 @@ const mockdata = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     icon: IconCookie,
     button: 'Quest 3',
+  },
+  {
+    title: 'Crossword',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    icon: IconCookie,
+    button: 'Quest 4',
+  },
+  {
+    title: 'Crossword',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    icon: IconCookie,
+    button: 'Quest 5',
+  },
+  {
+    title: 'Crossword',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    icon: IconCookie,
+    button: 'Quest 6',
   },
 ]
 

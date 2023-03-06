@@ -78,8 +78,8 @@ export function Hero() {
         <div className={classes.inner}>
           <div className={classes.content}>
             <Title className={classes.title}>
-              <span className={classes.highlight}>Quests</span> about <br />{' '}
-              Aleo Eco-System
+              This is <span className={classes.highlight}>Quests</span> about{' '}
+              <br /> Aleo Eco-System
             </Title>
             <Text color="dimmed" mt="md">
               Educational quests to test your knowledge of ZKP and Aleo
@@ -109,7 +109,7 @@ export function Hero() {
 
             <Group mt={30}>
               <Button fullWidth size="md" className={classes.control}>
-                App
+                About Rewards
               </Button>
             </Group>
           </div>
