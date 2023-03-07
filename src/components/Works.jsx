@@ -1,6 +1,11 @@
 import { Title, Text, Container, createStyles, Stepper } from '@mantine/core'
 
-import { IconFileImport, IconBrandDiscord, IconGift } from '@tabler/icons-react'
+import {
+  IconFileImport,
+  IconBrandDiscord,
+  IconGift,
+  IconQuestionCircle,
+} from '@tabler/icons-react'
 
 const useStyles = createStyles((theme) => ({
   title: {
@@ -42,12 +47,12 @@ export function Works() {
         align="center"
         mt="md"
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        Here will be a quick guide, about what and how to do in our quests to
+        become a winner.
       </Text>
 
       <Stepper
-        active={3}
+        active={4}
         mt={50}
         className={classes.stepper}
         orientation="vertical"
@@ -61,6 +66,11 @@ export function Works() {
           completedIcon={<IconBrandDiscord size={18} />}
           label="Complete your discord"
           description="In order to start the execution you need to enter your discord and start the quest."
+        />
+        <Stepper.Step
+          completedIcon={<IconQuestionCircle size={18} />}
+          label="Complete quest"
+          description="After filling in the discord, you can proceed with the quest."
         />
         <Stepper.Step
           completedIcon={<IconGift size={18} />}

@@ -109,7 +109,7 @@ export function Hero() {
 
             <Group mt={30}>
               <Button fullWidth size="md" className={classes.control}>
-                About Rewards
+                Get started
               </Button>
             </Group>
           </div>

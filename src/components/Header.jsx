@@ -185,6 +185,9 @@ export function HeaderMenu() {
             <a href="#" className={classes.link}>
               Home
             </a>
+            <a href="#" className={classes.link}>
+              Rewards
+            </a>
             <HoverCard
               width={600}
               position="bottom"
