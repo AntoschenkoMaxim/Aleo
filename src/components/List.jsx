@@ -1,4 +1,3 @@
-import { useForm } from '@mantine/form'
 import {
   createStyles,
   Title,
@@ -8,72 +7,25 @@ import {
   Container,
   Button,
   Modal,
-  TextInput,
-  Stepper,
-  Alert,
-  Image,
-  Code,
-  Grid,
-  Col,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import {
-  IconGauge,
-  IconUser,
-  IconCookie,
-  IconBrandDiscord,
-  IconQuestionCircle,
-  IconGift,
-  IconAlertCircle,
+  IconFlag,
+  IconRotateRectangle,
+  IconWorldUpload,
+  IconMoodCheck,
+  IconExclamationCircle,
+  IconSpy,
 } from '@tabler/icons-react'
 import { useState } from 'react'
 
 import image1 from '../assets/quest1.jpg'
-
-const mockdata = [
-  {
-    title: 'Quest 1',
-    description:
-      'Immerse yourself in an educationally adventurous journey through the world of Aleo!',
-    icon: IconGauge,
-    button: 'Start',
-  },
-  {
-    title: 'Quest 2',
-    description:
-      'Part of the way passed, but this is just the beginning, there are many more interesting ciphers ahead of you!',
-    icon: IconUser,
-    button: 'Start',
-  },
-  {
-    title: 'Quest 3',
-    description:
-      'Our adventure is in full swing, and everyone has a chance to take the lead.',
-    icon: IconCookie,
-    button: 'Start',
-  },
-  {
-    title: 'Quest 4',
-    description:
-      "There's definitely no clue here, don't even get your hopes up. It's somewhere else, oops...",
-    icon: IconCookie,
-    button: 'Start',
-  },
-  {
-    title: 'Quest 5',
-    description:
-      "We're almost at the finish line, don't relax, decipher everything we see!",
-    icon: IconCookie,
-    button: 'Start',
-  },
-  {
-    title: 'Quest 6',
-    description:
-      "That's it, the final quest is here, don't even try to enter ALEO as the final answer, it definitely won't work!",
-    icon: IconCookie,
-    button: 'Start',
-  },
-]
+import image2 from '../assets/quest2.jpg'
+import image3 from '../assets/quest3.jpg'
+import image4 from '../assets/quest4.jpg'
+import image5 from '../assets/quest5.jpg'
+import image6 from '../assets/quest6.jpg'
+import { QuestForm } from './QuestForm'
 
 const useStyles = createStyles((theme) => ({
   title: {
@@ -125,75 +77,126 @@ const useStyles = createStyles((theme) => ({
   },
 }))
 
-export function List() {
+export function List({ reference }) {
   //styles
   const { classes, theme } = useStyles()
 
   //modal
   const [opened, { open, close }] = useDisclosure(false)
 
-  //stepper
-  const [active, setActive] = useState(0)
-  const nextStep = () =>
-    setActive((current) => {
-      if (form.validate().hasErrors) {
-        return current
-      }
-      return current < 3 ? current + 1 : current
-    })
-  const prevStep = () =>
-    setActive((current) => (current > 0 ? current - 1 : current))
-
-  //forms
-  const form = useForm({
-    initialValues: {
-      discord: '',
-      answer: '',
-    },
-
-    validate: (values) => {
-      if (active === 0) {
-        return {
-          discord: /^.{3,32}#[0-9]{4}$/.test(values.discord)
-            ? null
-            : 'Invalid discord!',
-        }
-      }
-      if (active === 1) {
-        return {
-          answer:
-            values.answer.trim().toLowerCase() === 'ceremony'
-              ? null
-              : 'Wrong answer, please try again!',
-        }
-      }
-    },
-  })
-
   const [modalProps, setModalProps] = useState(null)
 
-  const handleButtonClick = ({ quest }) => {
-    switch (quest) {
-      case 'Quest 1':
-        setModalProps({
-          title: 'Quest 1',
-          description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          task: 'Crossword',
-          image: '',
-        })
-        break
-      case 'Quest 2':
-        setModalProps({
-          title: 'Quest 2',
-          description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          task: 'Crossword',
-          image: '',
-        })
-        break
-    }
+  const modalClose = () => {
+    close()
+    setModalProps(null)
   }
+
+  //click functions
+  const handleButton1Click = () => {
+    open()
+    setModalProps({
+      title: 'Quest 1',
+      image: image1,
+      answer: 'ceremony',
+    })
+  }
+
+  const handleButton2Click = () => {
+    open()
+    setModalProps({
+      title: 'Quest 2',
+      image: image2,
+      answer: 'apprentice voyager maestro',
+    })
+  }
+
+  const handleButton3Click = () => {
+    open()
+    setModalProps({
+      title: 'Quest 3',
+      image: image3,
+      answer: 'truly private applications',
+    })
+  }
+
+  const handleButton4Click = () => {
+    open()
+    setModalProps({
+      title: 'Quest 4',
+      image: image4,
+      answer:
+        '97f662b80caeea8788c22d0e855974258e2d9aa54d697d734f244c493c5350d1',
+    })
+  }
+
+  const handleButton5Click = () => {
+    open()
+    setModalProps({
+      title: 'Quest 5',
+      image: image5,
+      answer: 'viviane ford',
+    })
+  }
+
+  const handleButton6Click = () => {
+    open()
+    setModalProps({
+      title: 'Quest 6',
+      image: image6,
+      answer: 'aleo this is his community',
+    })
+  }
+
+  const mockdata = [
+    {
+      title: 'Quest 1',
+      description:
+        'Immerse yourself in an educationally adventurous journey through the world of Aleo!',
+      icon: IconRotateRectangle,
+      handleButtonClick: handleButton1Click,
+      disabled: false,
+    },
+    {
+      title: 'Quest 2',
+      description:
+        'Part of the way passed, but this is just the beginning, there are many more interesting ciphers ahead of you!',
+      icon: IconWorldUpload,
+      handleButtonClick: handleButton2Click,
+      disabled: false,
+    },
+    {
+      title: 'Quest 3',
+      description:
+        'Our adventure is in full swing, and everyone has a chance to take the lead.',
+      icon: IconMoodCheck,
+      handleButtonClick: handleButton3Click,
+      disabled: false,
+    },
+    {
+      title: 'Quest 4',
+      description:
+        "There's definitely no clue here, don't even get your hopes up. It's somewhere else, oops...",
+      icon: IconExclamationCircle,
+      handleButtonClick: handleButton4Click,
+      disabled: false,
+    },
+    {
+      title: 'Quest 5',
+      description:
+        "We're almost at the finish line, don't relax, decipher everything we see!",
+      icon: IconSpy,
+      handleButtonClick: handleButton5Click,
+      disabled: false,
+    },
+    {
+      title: 'Quest 6',
+      description:
+        "That's it, the final quest is here, don't even try to enter ALEO as the final answer, it definitely won't work!",
+      icon: IconFlag,
+      handleButtonClick: handleButton6Click,
+      disabled: false,
+    },
+  ]
 
   const features = mockdata.map((feature) => (
     <Card
@@ -215,14 +218,24 @@ export function List() {
       >
         {feature.description}
       </Text>
-      <Button onClick={open} fullWidth>
-        {feature.button}
+      <Button
+        disabled={feature.disabled}
+        onClick={feature.handleButtonClick}
+        fullWidth
+      >
+        Start
       </Button>
     </Card>
   ))
   return (
     <Container size="md" py="xl">
-      <Title order={2} className={classes.title} align="center" mt="sm">
+      <Title
+        ref={reference}
+        order={2}
+        className={classes.title}
+        align="center"
+        mt="sm"
+      >
         List of events about Aleo
       </Title>
 
@@ -243,72 +256,16 @@ export function List() {
       >
         {features}
       </SimpleGrid>
-      <Modal opened={opened} onClose={close} title="Crossword" centered>
-        <form onSubmit={form.onSubmit((values) => console.log(values))}>
-          <Stepper size="xs" active={active}>
-            <Stepper.Step icon={<IconBrandDiscord size={18} />}>
-              <Alert icon={<IconAlertCircle />} title="Bummer!" mt="md">
-                After successfully completing the quest, it will be impossible
-                to try again.
-              </Alert>
-              <TextInput
-                mt="sm"
-                withAsterisk
-                label="Discord handle"
-                icon={<IconBrandDiscord size={18} />}
-                placeholder="Andrew#4355"
-                {...form.getInputProps('discord')}
-              />
-            </Stepper.Step>
-            <Stepper.Step icon={<IconQuestionCircle size={18} />}>
-              <Image mt="md" radius="sm" src={image1} />
-              <TextInput
-                mt="sm"
-                withAsterisk
-                label="Answer"
-                icon={<IconQuestionCircle size={18} />}
-                placeholder="Ceremony"
-                {...form.getInputProps('answer')}
-              />
-            </Stepper.Step>
-            <Stepper.Step icon={<IconGift size={18} />}>
-              <>
-                <Alert
-                  icon={<IconGift />}
-                  title="Successfully completed!"
-                  mt="md"
-                  color="green"
-                >
-                  You have successfully completed the quest, now you can view
-                  your results in the leaderboard section.
-                </Alert>
-              </>
-            </Stepper.Step>
-            <Stepper.Completed>
-              Completed! Form values:
-              <Code block mt="xl">
-                {JSON.stringify(form.values, null, 2)}
-              </Code>
-            </Stepper.Completed>
-          </Stepper>
-          <Grid mt="md" span={12}>
-            {active !== 0 && (
-              <Col span={12} md={active === 3 ? 12 : 5}>
-                <Button fullWidth variant="default" onClick={prevStep}>
-                  Back
-                </Button>
-              </Col>
-            )}
-            {active !== 3 && (
-              <Col span={12} md={active === 0 ? 12 : 7}>
-                <Button fullWidth onClick={nextStep}>
-                  {active === 2 ? 'Leaderboard' : 'Next step'}
-                </Button>
-              </Col>
-            )}
-          </Grid>
-        </form>
-      </Modal>
+      {modalProps && (
+        <Modal
+          opened={opened}
+          onClose={modalClose}
+          title={modalProps.title}
+          centered
+        >
+          <QuestForm modalProps={modalProps} />
+        </Modal>
+      )}
     </Container>
   )
 }

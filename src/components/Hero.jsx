@@ -70,7 +70,7 @@ const useStyles = createStyles((theme) => ({
   },
 }))
 
-export function Hero() {
+export function Hero({ scroll }) {
   const { classes } = useStyles()
   return (
     <div>
@@ -108,7 +108,12 @@ export function Hero() {
             </List>
 
             <Group mt={30}>
-              <Button fullWidth size="md" className={classes.control}>
+              <Button
+                fullWidth
+                size="md"
+                className={classes.control}
+                onClick={() => scroll({ alignment: 'start' })}
+              >
                 Get started
               </Button>
             </Group>

@@ -2,7 +2,7 @@ import { createStyles, Container, Group, ActionIcon, Text } from '@mantine/core'
 import {
   IconBrandTwitter,
   IconBrandDiscord,
-  IconBrandTelegram,
+  IconBrandChrome,
 } from '@tabler/icons-react'
 
 import { ReactComponent as Logo } from '../assets/logo.svg'
@@ -52,14 +52,29 @@ export function Footer() {
           </Text>
         </Group>
         <Group spacing={0} className={classes.links} position="right" noWrap>
-          <ActionIcon size="lg">
+          <ActionIcon
+            component="a"
+            href="https://twitter.com/AleoHQ"
+            target="_blank"
+            size="lg"
+          >
             <IconBrandTwitter size={18} stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size="lg">
+          <ActionIcon
+            component="a"
+            href="https://discord.gg/aleohq"
+            target="_blank"
+            size="lg"
+          >
             <IconBrandDiscord size={18} stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size="lg">
-            <IconBrandTelegram size={18} stroke={1.5} />
+          <ActionIcon
+            component="a"
+            href="https://www.aleo.org/"
+            target="_blank"
+            size="lg"
+          >
+            <IconBrandChrome size={18} stroke={1.5} />
           </ActionIcon>
         </Group>
       </Container>

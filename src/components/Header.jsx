@@ -245,7 +245,14 @@ export function HeaderMenu() {
           </Group>
 
           <Group className={classes.hiddenMobile}>
-            <Button className={classes.button}>TG bot</Button>
+            <Button
+              component="a"
+              href="https://t.me/AleoQuests_bot"
+              target="_blank"
+              className={classes.button}
+            >
+              Telegram bot
+            </Button>
           </Group>
 
           <Burger
@@ -290,7 +297,13 @@ export function HeaderMenu() {
           />
 
           <Group position="center" grow pb="xl" px="md">
-            <Button>TG bot</Button>
+            <Button
+              component="a"
+              href="https://t.me/AleoQuests_bot"
+              target="_blank"
+            >
+              Telegram bot
+            </Button>
           </Group>
         </ScrollArea>
       </Drawer>
