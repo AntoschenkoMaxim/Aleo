@@ -88,7 +88,12 @@ export function List({ reference }) {
     defaultValue: 1,
   })
 
-  console.log(activeQuest)
+  const [activeDiscord, setActiveDiscord] = useLocalStorage({
+    key: 'active-discord',
+    defaultValue: null,
+  })
+
+  console.log(activeDiscord)
   //modal
   const [opened, { open, close }] = useDisclosure(false)
 
@@ -273,6 +278,8 @@ export function List({ reference }) {
         >
           <QuestForm
             modalProps={modalProps}
+            activeDiscord={activeDiscord}
+            setActiveDiscord={setActiveDiscord}
             activeQuest={activeQuest}
             setActiveQuest={setActiveQuest}
           />

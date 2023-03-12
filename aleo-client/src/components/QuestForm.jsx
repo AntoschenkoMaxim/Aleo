@@ -14,14 +14,27 @@ import {
   IconQuestionCircle,
   IconGift,
   IconAlertCircle,
+  IconChecks,
 } from '@tabler/icons-react'
 import { useState } from 'react'
 
-export function QuestForm({ modalProps, activeQuest, setActiveQuest }) {
+export function QuestForm({
+  modalProps,
+  activeDiscord,
+  setActiveDiscord,
+  activeQuest,
+  setActiveQuest,
+}) {
   //destructurization
   const { title, answer, image } = modalProps
-
   //local storage
+  const updateActiveDiscord = () => {
+    if (!form.validate().hasErrors) {
+      nextStep()
+      setActiveDiscord(form.values.discord)
+    }
+  }
+
   const updateActiveQuest = () => {
     if (!form.validate().hasErrors) {
       nextStep()
@@ -38,14 +51,13 @@ export function QuestForm({ modalProps, activeQuest, setActiveQuest }) {
       return current < 3 ? current + 1 : current
     })
   }
-
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current))
 
   //forms
   const form = useForm({
     initialValues: {
-      discord: '',
+      discord: activeDiscord !== null ? activeDiscord : '',
       answer: '',
     },
 
@@ -79,9 +91,14 @@ export function QuestForm({ modalProps, activeQuest, setActiveQuest }) {
           <TextInput
             mt="sm"
             withAsterisk
-            label="Discord handle"
             icon={<IconBrandDiscord size={18} />}
+            rightSection={
+              activeDiscord !== null && <IconChecks color="#339AF0" size={18} />
+            }
+            label="Discord handle"
             placeholder="Andrew#4355"
+            value={activeDiscord !== null && activeDiscord}
+            disabled={activeDiscord !== null}
             {...form.getInputProps('discord')}
           />
         </Stepper.Step>
@@ -90,8 +107,8 @@ export function QuestForm({ modalProps, activeQuest, setActiveQuest }) {
           <TextInput
             mt="sm"
             withAsterisk
-            label="Answer"
             icon={<IconQuestionCircle size={18} />}
+            label="Answer"
             placeholder="Your answer"
             {...form.getInputProps('answer')}
           />
@@ -128,7 +145,13 @@ export function QuestForm({ modalProps, activeQuest, setActiveQuest }) {
           <Col span={12} md={active === 0 || active === 2 ? 12 : 7}>
             <Button
               fullWidth
-              onClick={active === 1 ? updateActiveQuest : nextStep}
+              onClick={
+                active === 0
+                  ? updateActiveDiscord
+                  : active === 1
+                  ? updateActiveQuest
+                  : nextStep
+              }
             >
               {active === 2 ? 'Leaderboard' : 'Next step'}
             </Button>
