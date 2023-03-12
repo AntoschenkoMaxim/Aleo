@@ -8,7 +8,8 @@ import {
   Button,
   Modal,
 } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
+import { useState } from 'react'
+import { useDisclosure, useLocalStorage } from '@mantine/hooks'
 import {
   IconFlag,
   IconRotateRectangle,
@@ -17,7 +18,6 @@ import {
   IconExclamationCircle,
   IconSpy,
 } from '@tabler/icons-react'
-import { useState } from 'react'
 
 import image1 from '../assets/quest1.jpg'
 import image2 from '../assets/quest2.jpg'
@@ -25,6 +25,7 @@ import image3 from '../assets/quest3.jpg'
 import image4 from '../assets/quest4.jpg'
 import image5 from '../assets/quest5.jpg'
 import image6 from '../assets/quest6.jpg'
+
 import { QuestForm } from './QuestForm'
 
 const useStyles = createStyles((theme) => ({
@@ -81,6 +82,13 @@ export function List({ reference }) {
   //styles
   const { classes, theme } = useStyles()
 
+  //local-storage
+  const [activeQuest, setActiveQuest] = useLocalStorage({
+    key: 'active-quest',
+    defaultValue: 1,
+  })
+
+  console.log(activeQuest)
   //modal
   const [opened, { open, close }] = useDisclosure(false)
 
@@ -154,7 +162,7 @@ export function List({ reference }) {
         'Immerse yourself in an educationally adventurous journey through the world of Aleo!',
       icon: IconRotateRectangle,
       handleButtonClick: handleButton1Click,
-      disabled: false,
+      disabled: 1,
     },
     {
       title: 'Quest 2',
@@ -162,7 +170,7 @@ export function List({ reference }) {
         'Part of the way passed, but this is just the beginning, there are many more interesting ciphers ahead of you!',
       icon: IconWorldUpload,
       handleButtonClick: handleButton2Click,
-      disabled: false,
+      disabled: 2,
     },
     {
       title: 'Quest 3',
@@ -170,7 +178,7 @@ export function List({ reference }) {
         'Our adventure is in full swing, and everyone has a chance to take the lead.',
       icon: IconMoodCheck,
       handleButtonClick: handleButton3Click,
-      disabled: false,
+      disabled: 3,
     },
     {
       title: 'Quest 4',
@@ -178,7 +186,7 @@ export function List({ reference }) {
         "There's definitely no clue here, don't even get your hopes up. It's somewhere else, oops...",
       icon: IconExclamationCircle,
       handleButtonClick: handleButton4Click,
-      disabled: false,
+      disabled: 4,
     },
     {
       title: 'Quest 5',
@@ -186,7 +194,7 @@ export function List({ reference }) {
         "We're almost at the finish line, don't relax, decipher everything we see!",
       icon: IconSpy,
       handleButtonClick: handleButton5Click,
-      disabled: false,
+      disabled: 5,
     },
     {
       title: 'Quest 6',
@@ -194,7 +202,7 @@ export function List({ reference }) {
         "That's it, the final quest is here, don't even try to enter ALEO as the final answer, it definitely won't work!",
       icon: IconFlag,
       handleButtonClick: handleButton6Click,
-      disabled: false,
+      disabled: 6,
     },
   ]
 
@@ -219,7 +227,7 @@ export function List({ reference }) {
         {feature.description}
       </Text>
       <Button
-        disabled={feature.disabled}
+        disabled={activeQuest !== feature.disabled}
         onClick={feature.handleButtonClick}
         fullWidth
       >
@@ -263,7 +271,11 @@ export function List({ reference }) {
           title={modalProps.title}
           centered
         >
-          <QuestForm modalProps={modalProps} />
+          <QuestForm
+            modalProps={modalProps}
+            activeQuest={activeQuest}
+            setActiveQuest={setActiveQuest}
+          />
         </Modal>
       )}
     </Container>

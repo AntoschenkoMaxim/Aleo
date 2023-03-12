@@ -17,18 +17,28 @@ import {
 } from '@tabler/icons-react'
 import { useState } from 'react'
 
-export function QuestForm({ modalProps }) {
+export function QuestForm({ modalProps, activeQuest, setActiveQuest }) {
   //destructurization
   const { title, answer, image } = modalProps
+
+  //local storage
+  const updateActiveQuest = () => {
+    if (!form.validate().hasErrors) {
+      nextStep()
+      setActiveQuest(activeQuest + 1)
+    }
+  }
   //stepper
   const [active, setActive] = useState(0)
-  const nextStep = () =>
+  const nextStep = () => {
     setActive((current) => {
       if (form.validate().hasErrors) {
         return current
       }
       return current < 3 ? current + 1 : current
     })
+  }
+
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current))
 
@@ -63,7 +73,7 @@ export function QuestForm({ modalProps }) {
       <Stepper size="xs" active={active}>
         <Stepper.Step icon={<IconBrandDiscord size={18} />}>
           <Alert icon={<IconAlertCircle />} title="Bummer!" mt="md">
-            After successfully completing the quest, it will be impossible to
+            After successfully completing the {title}, it will be impossible to
             try again.
           </Alert>
           <TextInput
@@ -107,7 +117,7 @@ export function QuestForm({ modalProps }) {
         </Stepper.Completed>
       </Stepper>
       <Grid mt="md" span={12}>
-        {active !== 0 && (
+        {active !== 0 && active !== 2 && (
           <Col span={12} md={active === 3 ? 12 : 5}>
             <Button fullWidth variant="default" onClick={prevStep}>
               Back
@@ -115,8 +125,11 @@ export function QuestForm({ modalProps }) {
           </Col>
         )}
         {active !== 3 && (
-          <Col span={12} md={active === 0 ? 12 : 7}>
-            <Button fullWidth onClick={nextStep}>
+          <Col span={12} md={active === 0 || active === 2 ? 12 : 7}>
+            <Button
+              fullWidth
+              onClick={active === 1 ? updateActiveQuest : nextStep}
+            >
               {active === 2 ? 'Leaderboard' : 'Next step'}
             </Button>
           </Col>
