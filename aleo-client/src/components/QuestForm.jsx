@@ -5,9 +5,14 @@ import {
   Stepper,
   Alert,
   Image,
-  Code,
   Grid,
   Col,
+  Card,
+  Group,
+  Text,
+  createStyles,
+  SimpleGrid,
+  UnstyledButton,
 } from '@mantine/core'
 import {
   IconBrandDiscord,
@@ -15,18 +20,58 @@ import {
   IconGift,
   IconAlertCircle,
   IconChecks,
+  IconCircleNumber1,
+  IconCircleNumber5,
+  IconCircleNumber3,
+  IconCircleNumber2,
+  IconCircleNumber6,
+  IconCircleNumber4,
+  IconCircleNumber9,
+  IconCircleNumber8,
+  IconCircleNumber7,
 } from '@tabler/icons-react'
 import { useState } from 'react'
+import moment from 'moment'
+import { useGetUsersByQuestQuery, useAddUserMutation } from '../redux/questApi'
+
+const useStyles = createStyles((theme) => ({
+  card: {
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[6]
+        : theme.colors.gray[0],
+  },
+
+  title: {
+    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    fontWeight: 700,
+  },
+
+  item: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    borderRadius: theme.radius.md,
+    height: 90,
+    backgroundColor:
+      theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+  },
+}))
 
 export function QuestForm({
   modalProps,
+  modalClose,
   activeDiscord,
   setActiveDiscord,
   activeQuest,
   setActiveQuest,
 }) {
+  //styles
+  const { classes } = useStyles()
   //destructurization
-  const { title, answer, image } = modalProps
+  const { questNumber, title, answer, image } = modalProps
   //local storage
   const updateActiveDiscord = () => {
     if (!form.validate().hasErrors) {
@@ -34,10 +79,10 @@ export function QuestForm({
       setActiveDiscord(form.values.discord)
     }
   }
-
   const updateActiveQuest = () => {
     if (!form.validate().hasErrors) {
       nextStep()
+      handleAddUser()
       setActiveQuest(activeQuest + 1)
     }
   }
@@ -80,11 +125,57 @@ export function QuestForm({
     },
   })
 
+  //redux
+  const { data = [], isLoading } = useGetUsersByQuestQuery(questNumber)
+  const [addUser, { isError }] = useAddUserMutation()
+  const handleAddUser = async () => {
+    await addUser({
+      method: 'website',
+      discord: form.values.discord,
+      questNumber: questNumber,
+    }).unwrap()
+  }
+
+  const items = data.map((item, index) => (
+    <UnstyledButton key={item.id} className={classes.item}>
+      {index === 0 ? (
+        <IconCircleNumber1 color="#339AF0" size="2rem" />
+      ) : index === 1 ? (
+        <IconCircleNumber2 color="#339AF0" size="2rem" />
+      ) : index === 2 ? (
+        <IconCircleNumber3 color="#339AF0" size="2rem" />
+      ) : index === 3 ? (
+        <IconCircleNumber4 color="#339AF0" size="2rem" />
+      ) : index === 4 ? (
+        <IconCircleNumber5 color="#339AF0" size="2rem" />
+      ) : index === 5 ? (
+        <IconCircleNumber6 color="#339AF0" size="2rem" />
+      ) : index === 6 ? (
+        <IconCircleNumber7 color="#339AF0" size="2rem" />
+      ) : index === 7 ? (
+        <IconCircleNumber8 color="#339AF0" size="2rem" />
+      ) : (
+        <IconCircleNumber9 color="#339AF0" size="2rem" />
+      )}
+      <Text size="xs" mt={7}>
+        {item.discord}
+      </Text>
+      <Text color="dimmed" size="xs">
+        {moment(item.createdAt).fromNow()}
+      </Text>
+    </UnstyledButton>
+  ))
+
   return (
-    <form onSubmit={form.onSubmit((values) => console.log(values))}>
+    <form>
       <Stepper size="xs" active={active}>
         <Stepper.Step icon={<IconBrandDiscord size={18} />}>
-          <Alert icon={<IconAlertCircle />} title="Bummer!" mt="md">
+          <Alert
+            variant="outline"
+            icon={<IconAlertCircle />}
+            title="Bummer!"
+            mt="md"
+          >
             After successfully completing the {title}, it will be impossible to
             try again.
           </Alert>
@@ -127,36 +218,47 @@ export function QuestForm({
           </>
         </Stepper.Step>
         <Stepper.Completed>
-          Completed! Form values:
-          <Code block mt="xl">
-            {JSON.stringify(form.values, null, 2)}
-          </Code>
+          <Card withBorder radius="md" className={classes.card}>
+            <Group position="apart">
+              <Text className={classes.title}>Winners</Text>
+              <Text size="xs" color="dimmed" sx={{ lineHeight: 1 }}>
+                + 21 other
+              </Text>
+            </Group>
+            <SimpleGrid cols={3} mt="md">
+              {items}
+            </SimpleGrid>
+          </Card>
         </Stepper.Completed>
       </Stepper>
       <Grid mt="md" span={12}>
         {active !== 0 && active !== 2 && (
-          <Col span={12} md={active === 3 ? 12 : 5}>
+          <Col span={12} md={5}>
             <Button fullWidth variant="default" onClick={prevStep}>
               Back
             </Button>
           </Col>
         )}
-        {active !== 3 && (
-          <Col span={12} md={active === 0 || active === 2 ? 12 : 7}>
-            <Button
-              fullWidth
-              onClick={
-                active === 0
-                  ? updateActiveDiscord
-                  : active === 1
-                  ? updateActiveQuest
-                  : nextStep
-              }
-            >
-              {active === 2 ? 'Leaderboard' : 'Next step'}
-            </Button>
-          </Col>
-        )}
+        <Col span={12} md={active === 0 || active === 2 ? 12 : 7}>
+          <Button
+            fullWidth
+            onClick={
+              active === 0
+                ? updateActiveDiscord
+                : active === 1
+                ? updateActiveQuest
+                : active === 3
+                ? modalClose
+                : nextStep
+            }
+          >
+            {active === 2
+              ? 'Leaderboard'
+              : active === 3
+              ? 'Continue'
+              : 'Next step'}
+          </Button>
+        </Col>
       </Grid>
     </form>
   )

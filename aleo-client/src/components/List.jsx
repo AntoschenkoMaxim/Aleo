@@ -108,6 +108,7 @@ export function List({ reference }) {
   const handleButton1Click = () => {
     open()
     setModalProps({
+      questNumber: 1,
       title: 'Quest 1',
       image: image1,
       answer: 'ceremony',
@@ -117,6 +118,7 @@ export function List({ reference }) {
   const handleButton2Click = () => {
     open()
     setModalProps({
+      questNumber: 2,
       title: 'Quest 2',
       image: image2,
       answer: 'apprentice voyager maestro',
@@ -126,6 +128,7 @@ export function List({ reference }) {
   const handleButton3Click = () => {
     open()
     setModalProps({
+      questNumber: 3,
       title: 'Quest 3',
       image: image3,
       answer: 'truly private applications',
@@ -135,6 +138,7 @@ export function List({ reference }) {
   const handleButton4Click = () => {
     open()
     setModalProps({
+      questNumber: 4,
       title: 'Quest 4',
       image: image4,
       answer:
@@ -145,6 +149,7 @@ export function List({ reference }) {
   const handleButton5Click = () => {
     open()
     setModalProps({
+      questNumber: 5,
       title: 'Quest 5',
       image: image5,
       answer: 'viviane ford',
@@ -154,6 +159,7 @@ export function List({ reference }) {
   const handleButton6Click = () => {
     open()
     setModalProps({
+      questNumber: 6,
       title: 'Quest 6',
       image: image6,
       answer: 'aleo this is his community',
@@ -240,6 +246,7 @@ export function List({ reference }) {
       </Button>
     </Card>
   ))
+
   return (
     <Container size="md" py="xl">
       <Title
@@ -278,6 +285,7 @@ export function List({ reference }) {
         >
           <QuestForm
             modalProps={modalProps}
+            modalClose={modalClose}
             activeDiscord={activeDiscord}
             setActiveDiscord={setActiveDiscord}
             activeQuest={activeQuest}
