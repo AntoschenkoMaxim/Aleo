@@ -1,10 +1,11 @@
 import { useScrollIntoView } from '@mantine/hooks'
-import { Scroll } from './components/Scroll'
-import { Footer } from './components/Footer'
-import { HeaderMenu as Header } from './components/Header'
-import { Hero } from './components/Hero'
-import { List } from './components/List'
-import { Works } from './components/Works'
+import {
+  Footer,
+  Works,
+  List,
+  Hero,
+  HeaderMenu as Header,
+} from './components/index'
 
 function App() {
   const { scrollIntoView, targetRef } = useScrollIntoView({ offset: 60 })

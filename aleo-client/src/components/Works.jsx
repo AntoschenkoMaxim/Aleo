@@ -34,7 +34,37 @@ const useStyles = createStyles((theme) => ({
 }))
 
 export function Works() {
+  //styles
   const { classes } = useStyles()
+
+  //mocks
+  const mockdata = [
+    {
+      icon: IconFileImport,
+      label: 'Go to the Quest',
+      description:
+        'In order to proceed to the quest, select the last quest available to you and click on the button of this quest.',
+    },
+    {
+      icon: IconBrandDiscord,
+      label: 'Complete your discord',
+      description:
+        'In order to start the execution you need to enter your discord and start the quest.',
+    },
+    {
+      icon: IconQuestionCircle,
+      label: 'Complete quest',
+      description:
+        'After filling in the discord, you can proceed with the quest.',
+    },
+    {
+      icon: IconGift,
+      label: 'Get a prize',
+      description:
+        'After completing the quest, you will take any place and, in accordance with it, you will receive your reward.',
+    },
+  ]
+
   return (
     <Container size="md" py="xl">
       <Title order={2} className={classes.title} align="center" mt="sm">
@@ -57,26 +87,14 @@ export function Works() {
         className={classes.stepper}
         orientation="vertical"
       >
-        <Stepper.Step
-          completedIcon={<IconFileImport size={18} />}
-          label="Go to the Quest"
-          description="In order to proceed to the quest, select the last quest available to you and click on the button of this quest."
-        />
-        <Stepper.Step
-          completedIcon={<IconBrandDiscord size={18} />}
-          label="Complete your discord"
-          description="In order to start the execution you need to enter your discord and start the quest."
-        />
-        <Stepper.Step
-          completedIcon={<IconQuestionCircle size={18} />}
-          label="Complete quest"
-          description="After filling in the discord, you can proceed with the quest."
-        />
-        <Stepper.Step
-          completedIcon={<IconGift size={18} />}
-          label="Get a prize"
-          description="After completing the quest, you will take any place and, in accordance with it, you will receive your reward."
-        />
+        {mockdata.map((step) => (
+          <Stepper.Step
+            key={step.label}
+            completedIcon={<step.icon size={18} />}
+            label={step.label}
+            description={step.description}
+          />
+        ))}
       </Stepper>
     </Container>
   )

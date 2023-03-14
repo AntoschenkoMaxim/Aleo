@@ -10,7 +10,7 @@ import {
   ThemeIcon,
 } from '@mantine/core'
 import { IconCheck } from '@tabler/icons-react'
-import image from '../assets/hero.svg'
+import { hero } from '../assets/index'
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -53,7 +53,6 @@ const useStyles = createStyles((theme) => ({
 
   image: {
     flex: 1,
-
     [theme.fn.smallerThan('md')]: {
       display: 'none',
     },
@@ -71,7 +70,9 @@ const useStyles = createStyles((theme) => ({
 }))
 
 export function Hero({ scroll }) {
+  //styles
   const { classes } = useStyles()
+
   return (
     <div>
       <Container>
@@ -118,7 +119,7 @@ export function Hero({ scroll }) {
               </Button>
             </Group>
           </div>
-          <Image src={image} className={classes.image} />
+          <Image src={hero} className={classes.image} />
         </div>
       </Container>
     </div>

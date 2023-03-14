@@ -62,7 +62,7 @@ const useStyles = createStyles((theme) => ({
 
 export function QuestForm({
   modalProps,
-  modalClose,
+  handleModalClose,
   activeDiscord,
   setActiveDiscord,
   activeQuest,
@@ -72,6 +72,31 @@ export function QuestForm({
   const { classes } = useStyles()
   //destructurization
   const { questNumber, title, answer, image } = modalProps
+  //forms
+  const form = useForm({
+    initialValues: {
+      discord: activeDiscord !== null ? activeDiscord : '',
+      answer: '',
+    },
+
+    validate: (values) => {
+      if (active === 0) {
+        return {
+          discord: /^.{3,32}#[0-9]{4}$/.test(values.discord)
+            ? null
+            : 'Invalid discord!',
+        }
+      }
+      if (active === 1) {
+        return {
+          answer:
+            values.answer.trim().toLowerCase() === answer
+              ? null
+              : 'Wrong answer, please try again!',
+        }
+      }
+    },
+  })
   //local storage
   const updateActiveDiscord = () => {
     if (!form.validate().hasErrors) {
@@ -98,33 +123,6 @@ export function QuestForm({
   }
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current))
-
-  //forms
-  const form = useForm({
-    initialValues: {
-      discord: activeDiscord !== null ? activeDiscord : '',
-      answer: '',
-    },
-
-    validate: (values) => {
-      if (active === 0) {
-        return {
-          discord: /^.{3,32}#[0-9]{4}$/.test(values.discord)
-            ? null
-            : 'Invalid discord!',
-        }
-      }
-      if (active === 1) {
-        return {
-          answer:
-            values.answer.trim().toLowerCase() === answer
-              ? null
-              : 'Wrong answer, please try again!',
-        }
-      }
-    },
-  })
-
   //redux
   const { data = [], isLoading } = useGetUsersByQuestQuery(questNumber)
   const [addUser, { isError }] = useAddUserMutation()
@@ -134,6 +132,24 @@ export function QuestForm({
       discord: form.values.discord,
       questNumber: questNumber,
     }).unwrap()
+  }
+
+  const handleButtonEvents = () => {
+    return active === 0
+      ? updateActiveDiscord
+      : active === 1
+      ? updateActiveQuest
+      : active === 3
+      ? handleModalClose
+      : nextStep
+  }
+
+  const handleButtonName = () => {
+    return active === 2
+      ? 'Leaderboard'
+      : active === 3
+      ? 'Continue'
+      : 'Next step'
   }
 
   const items = data.map((item, index) => (
@@ -240,23 +256,8 @@ export function QuestForm({
           </Col>
         )}
         <Col span={12} md={active === 0 || active === 2 ? 12 : 7}>
-          <Button
-            fullWidth
-            onClick={
-              active === 0
-                ? updateActiveDiscord
-                : active === 1
-                ? updateActiveQuest
-                : active === 3
-                ? modalClose
-                : nextStep
-            }
-          >
-            {active === 2
-              ? 'Leaderboard'
-              : active === 3
-              ? 'Continue'
-              : 'Next step'}
+          <Button fullWidth onClick={handleButtonEvents()}>
+            {handleButtonName()}
           </Button>
         </Col>
       </Grid>

@@ -40,7 +40,15 @@ const useStyles = createStyles((theme) => ({
 }))
 
 export function Footer() {
+  //styles
   const { classes } = useStyles()
+
+  //mocks
+  const references = [
+    { href: 'https://twitter.com/AleoHQ', icon: IconBrandTwitter },
+    { href: 'https://discord.gg/aleohq', icon: IconBrandDiscord },
+    { href: 'https://www.aleo.org/', icon: IconBrandChrome },
+  ]
 
   return (
     <div className={classes.footer}>
@@ -52,30 +60,17 @@ export function Footer() {
           </Text>
         </Group>
         <Group spacing={0} className={classes.links} position="right" noWrap>
-          <ActionIcon
-            component="a"
-            href="https://twitter.com/AleoHQ"
-            target="_blank"
-            size="lg"
-          >
-            <IconBrandTwitter size={18} stroke={1.5} />
-          </ActionIcon>
-          <ActionIcon
-            component="a"
-            href="https://discord.gg/aleohq"
-            target="_blank"
-            size="lg"
-          >
-            <IconBrandDiscord size={18} stroke={1.5} />
-          </ActionIcon>
-          <ActionIcon
-            component="a"
-            href="https://www.aleo.org/"
-            target="_blank"
-            size="lg"
-          >
-            <IconBrandChrome size={18} stroke={1.5} />
-          </ActionIcon>
+          {references.map((reference) => (
+            <ActionIcon
+              key={reference.href}
+              component="a"
+              href={reference.href}
+              target="_blank"
+              size="lg"
+            >
+              <reference.icon size={18} stroke={1.5} />
+            </ActionIcon>
+          ))}
         </Group>
       </Container>
     </div>

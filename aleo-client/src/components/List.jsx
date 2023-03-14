@@ -2,10 +2,8 @@ import {
   createStyles,
   Title,
   Text,
-  Card,
   SimpleGrid,
   Container,
-  Button,
   Modal,
 } from '@mantine/core'
 import { useState } from 'react'
@@ -19,14 +17,8 @@ import {
   IconSpy,
 } from '@tabler/icons-react'
 
-import image1 from '../assets/quest1.jpg'
-import image2 from '../assets/quest2.jpg'
-import image3 from '../assets/quest3.jpg'
-import image4 from '../assets/quest4.jpg'
-import image5 from '../assets/quest5.jpg'
-import image6 from '../assets/quest6.jpg'
-
-import { QuestForm } from './QuestForm'
+import { quest1, quest2, quest3, quest4, quest5, quest6 } from '../assets/index'
+import { QuestCard, QuestForm } from './index'
 
 const useStyles = createStyles((theme) => ({
   title: {
@@ -52,35 +44,11 @@ const useStyles = createStyles((theme) => ({
       marginRight: 'auto',
     },
   },
-
-  card: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    border: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]
-    }`,
-  },
-
-  cardTitle: {
-    '&::after': {
-      content: '""',
-      display: 'block',
-      backgroundColor: theme.fn.primaryColor(),
-      width: 45,
-      height: 2,
-      marginTop: theme.spacing.sm,
-    },
-  },
-
-  cardDescription: {
-    marginBottom: theme.spacing.md,
-  },
 }))
 
 export function List({ reference }) {
   //styles
-  const { classes, theme } = useStyles()
+  const { classes } = useStyles()
 
   //local-storage
   const [activeQuest, setActiveQuest] = useLocalStorage({
@@ -93,86 +61,46 @@ export function List({ reference }) {
     defaultValue: null,
   })
 
-  console.log(activeDiscord)
   //modal
   const [opened, { open, close }] = useDisclosure(false)
 
   const [modalProps, setModalProps] = useState(null)
 
-  const modalClose = () => {
+  const handleModalClose = () => {
     close()
     setModalProps(null)
   }
 
-  //click functions
-  const handleButton1Click = () => {
+  //array of datas
+  const images = [quest1, quest2, quest3, quest4, quest5, quest6]
+  const answers = [
+    'ceremony',
+    'apprentice voyager maestro',
+    'truly private applications',
+    '97f662b80caeea8788c22d0e855974258e2d9aa54d697d734f244c493c5350d1',
+    'viviane ford',
+    'aleo this is his community',
+  ]
+
+  //click function
+  const handleButtonClick = (number) => {
     open()
     setModalProps({
-      questNumber: 1,
-      title: 'Quest 1',
-      image: image1,
-      answer: 'ceremony',
+      questNumber: number,
+      title: `Quest ${number}`,
+      image: images[number - 1],
+      answer: answers[number - 1],
     })
   }
 
-  const handleButton2Click = () => {
-    open()
-    setModalProps({
-      questNumber: 2,
-      title: 'Quest 2',
-      image: image2,
-      answer: 'apprentice voyager maestro',
-    })
-  }
-
-  const handleButton3Click = () => {
-    open()
-    setModalProps({
-      questNumber: 3,
-      title: 'Quest 3',
-      image: image3,
-      answer: 'truly private applications',
-    })
-  }
-
-  const handleButton4Click = () => {
-    open()
-    setModalProps({
-      questNumber: 4,
-      title: 'Quest 4',
-      image: image4,
-      answer:
-        '97f662b80caeea8788c22d0e855974258e2d9aa54d697d734f244c493c5350d1',
-    })
-  }
-
-  const handleButton5Click = () => {
-    open()
-    setModalProps({
-      questNumber: 5,
-      title: 'Quest 5',
-      image: image5,
-      answer: 'viviane ford',
-    })
-  }
-
-  const handleButton6Click = () => {
-    open()
-    setModalProps({
-      questNumber: 6,
-      title: 'Quest 6',
-      image: image6,
-      answer: 'aleo this is his community',
-    })
-  }
-
+  //mocks
   const mockdata = [
     {
       title: 'Quest 1',
       description:
         'Immerse yourself in an educationally adventurous journey through the world of Aleo!',
       icon: IconRotateRectangle,
-      handleButtonClick: handleButton1Click,
+      handleButtonClick: () => handleButtonClick(1),
       disabled: 1,
     },
     {
@@ -180,7 +108,7 @@ export function List({ reference }) {
       description:
         'Part of the way passed, but this is just the beginning, there are many more interesting ciphers ahead of you!',
       icon: IconWorldUpload,
-      handleButtonClick: handleButton2Click,
+      handleButtonClick: () => handleButtonClick(2),
       disabled: 2,
     },
     {
@@ -188,7 +116,7 @@ export function List({ reference }) {
       description:
         'Our adventure is in full swing, and everyone has a chance to take the lead.',
       icon: IconMoodCheck,
-      handleButtonClick: handleButton3Click,
+      handleButtonClick: () => handleButtonClick(3),
       disabled: 3,
     },
     {
@@ -196,7 +124,7 @@ export function List({ reference }) {
       description:
         "There's definitely no clue here, don't even get your hopes up. It's somewhere else, oops...",
       icon: IconExclamationCircle,
-      handleButtonClick: handleButton4Click,
+      handleButtonClick: () => handleButtonClick(4),
       disabled: 4,
     },
     {
@@ -204,7 +132,7 @@ export function List({ reference }) {
       description:
         "We're almost at the finish line, don't relax, decipher everything we see!",
       icon: IconSpy,
-      handleButtonClick: handleButton5Click,
+      handleButtonClick: () => handleButtonClick(5),
       disabled: 5,
     },
     {
@@ -212,39 +140,13 @@ export function List({ reference }) {
       description:
         "That's it, the final quest is here, don't even try to enter ALEO as the final answer, it definitely won't work!",
       icon: IconFlag,
-      handleButtonClick: handleButton6Click,
+      handleButtonClick: () => handleButtonClick(6),
       disabled: 6,
     },
   ]
 
-  const features = mockdata.map((feature) => (
-    <Card
-      key={feature.title}
-      shadow="md"
-      radius="md"
-      className={classes.card}
-      p="xl"
-    >
-      <feature.icon size={50} stroke={2} color={theme.fn.primaryColor()} />
-      <Text size="lg" weight={500} className={classes.cardTitle} mt="md">
-        {feature.title}
-      </Text>
-      <Text
-        className={classes.cardDescription}
-        size="sm"
-        color="dimmed"
-        mt="sm"
-      >
-        {feature.description}
-      </Text>
-      <Button
-        disabled={activeQuest !== feature.disabled}
-        onClick={feature.handleButtonClick}
-        fullWidth
-      >
-        Start
-      </Button>
-    </Card>
+  const quests = mockdata.map((quest) => (
+    <QuestCard key={quest.title} quest={quest} activeQuest={activeQuest} />
   ))
 
   return (
@@ -274,18 +176,18 @@ export function List({ reference }) {
         mt={50}
         breakpoints={[{ maxWidth: 'md', cols: 1 }]}
       >
-        {features}
+        {quests}
       </SimpleGrid>
       {modalProps && (
         <Modal
           opened={opened}
-          onClose={modalClose}
+          onClose={handleModalClose}
           title={modalProps.title}
           centered
         >
           <QuestForm
             modalProps={modalProps}
-            modalClose={modalClose}
+            handleModalClose={handleModalClose}
             activeDiscord={activeDiscord}
             setActiveDiscord={setActiveDiscord}
             activeQuest={activeQuest}
