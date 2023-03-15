@@ -20,19 +20,10 @@ import {
   IconGift,
   IconAlertCircle,
   IconChecks,
-  IconCircleNumber1,
-  IconCircleNumber5,
-  IconCircleNumber3,
-  IconCircleNumber2,
-  IconCircleNumber6,
-  IconCircleNumber4,
-  IconCircleNumber9,
-  IconCircleNumber8,
-  IconCircleNumber7,
 } from '@tabler/icons-react'
 import { useState } from 'react'
-import moment from 'moment'
 import { useGetUsersByQuestQuery, useAddUserMutation } from '../redux/questApi'
+import { LeaderboardCard } from './LeaderboardCard'
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -84,7 +75,7 @@ export function QuestForm({
         return {
           discord: /^.{3,32}#[0-9]{4}$/.test(values.discord)
             ? null
-            : 'Invalid discord!',
+            : 'Wrong discord, please try again!',
         }
       }
       if (active === 1) {
@@ -153,33 +144,7 @@ export function QuestForm({
   }
 
   const items = data.map((item, index) => (
-    <UnstyledButton key={item.id} className={classes.item}>
-      {index === 0 ? (
-        <IconCircleNumber1 color="#339AF0" size="2rem" />
-      ) : index === 1 ? (
-        <IconCircleNumber2 color="#339AF0" size="2rem" />
-      ) : index === 2 ? (
-        <IconCircleNumber3 color="#339AF0" size="2rem" />
-      ) : index === 3 ? (
-        <IconCircleNumber4 color="#339AF0" size="2rem" />
-      ) : index === 4 ? (
-        <IconCircleNumber5 color="#339AF0" size="2rem" />
-      ) : index === 5 ? (
-        <IconCircleNumber6 color="#339AF0" size="2rem" />
-      ) : index === 6 ? (
-        <IconCircleNumber7 color="#339AF0" size="2rem" />
-      ) : index === 7 ? (
-        <IconCircleNumber8 color="#339AF0" size="2rem" />
-      ) : (
-        <IconCircleNumber9 color="#339AF0" size="2rem" />
-      )}
-      <Text size="xs" mt={7}>
-        {item.discord}
-      </Text>
-      <Text color="dimmed" size="xs">
-        {moment(item.createdAt).fromNow()}
-      </Text>
-    </UnstyledButton>
+    <LeaderboardCard item={item} index={index} />
   ))
 
   return (

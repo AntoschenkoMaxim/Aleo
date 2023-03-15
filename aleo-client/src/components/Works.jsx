@@ -38,7 +38,7 @@ export function Works() {
   const { classes } = useStyles()
 
   //mocks
-  const mockdata = [
+  const stepper = [
     {
       icon: IconFileImport,
       label: 'Go to the Quest',
@@ -87,7 +87,7 @@ export function Works() {
         className={classes.stepper}
         orientation="vertical"
       >
-        {mockdata.map((step) => (
+        {stepper.map((step) => (
           <Stepper.Step
             key={step.label}
             completedIcon={<step.icon size={18} />}
