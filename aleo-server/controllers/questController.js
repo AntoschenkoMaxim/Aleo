@@ -14,7 +14,9 @@ class QuestController {
 
   async getUsersByQuest(req, res) {
     const { questNumber } = req.query;
-    const quests = await Quest.findAll({ where: { questNumber } });
+    const quests = await Quest.findAll({
+      where: { questNumber },
+    });
     return res.json(quests);
   }
 }

@@ -144,7 +144,7 @@ export function QuestForm({
   }
 
   const items = data.map((item, index) => (
-    <LeaderboardCard item={item} index={index} />
+    <LeaderboardCard key={item.id} item={item} index={index} />
   ))
 
   return (
