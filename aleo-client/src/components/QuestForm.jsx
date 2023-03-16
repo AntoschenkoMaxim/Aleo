@@ -115,7 +115,11 @@ export function QuestForm({
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current))
   //redux
-  const { data = [], isLoading } = useGetUsersByQuestQuery(questNumber)
+  const limit = 9
+  const { data = [], isLoading } = useGetUsersByQuestQuery({
+    questNumber,
+    limit,
+  })
   const [addUser, { isError }] = useAddUserMutation()
   const handleAddUser = async () => {
     await addUser({

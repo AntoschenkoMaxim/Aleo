@@ -6,8 +6,10 @@ export const questApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/' }),
   endpoints: (build) => ({
     getUsersByQuest: build.query({
-      query: (questNumber = '') =>
-        `quest?${questNumber && `questNumber=${questNumber}`}`,
+      query: ({ questNumber = '', limit = '' }) =>
+        `quest?${questNumber && `questNumber=${questNumber}`}&${
+          limit && `limit=${limit}`
+        }`,
       providesTags: (result) =>
         result
           ? [
