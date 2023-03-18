@@ -1,4 +1,5 @@
-import { Button, Card, createStyles, Text } from '@mantine/core'
+import { Button, Card, createStyles, Text, Modal } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -29,8 +30,12 @@ const useStyles = createStyles((theme) => ({
 export function QuestCard({ quest, activeQuest }) {
   //styles
   const { classes, theme } = useStyles()
+
   //destructurization
   const { title, description, disabled, handleButtonClick } = quest
+
+  //modals
+  const [opened, { open, close }] = useDisclosure(false)
   return (
     <Card key={title} shadow="md" radius="md" className={classes.card} p="xl">
       <quest.icon size={50} stroke={2} color={theme.fn.primaryColor()} />
@@ -45,13 +50,25 @@ export function QuestCard({ quest, activeQuest }) {
       >
         {description}
       </Text>
-      <Button
-        disabled={activeQuest !== disabled}
-        onClick={handleButtonClick}
-        fullWidth
-      >
-        Start
-      </Button>
+      {activeQuest <= disabled ? (
+        <Button
+          disabled={activeQuest !== disabled}
+          onClick={handleButtonClick}
+          fullWidth
+        >
+          Start
+        </Button>
+      ) : (
+        <Button variant="light" onClick={open} fullWidth>
+          Leaderboard
+        </Button>
+      )}
+      <Modal
+        opened={opened}
+        onClose={close}
+        title="Leaderboard"
+        centered
+      ></Modal>
     </Card>
   )
 }

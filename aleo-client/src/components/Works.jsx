@@ -4,7 +4,7 @@ import {
   IconFileImport,
   IconBrandDiscord,
   IconGift,
-  IconQuestionCircle,
+  IconHelpHexagon,
 } from '@tabler/icons-react'
 
 const useStyles = createStyles((theme) => ({
@@ -52,7 +52,7 @@ export function Works() {
         'In order to start the execution you need to enter your discord and start the quest.',
     },
     {
-      icon: IconQuestionCircle,
+      icon: IconHelpHexagon,
       label: 'Complete quest',
       description:
         'After filling in the discord, you can proceed with the quest.',

@@ -10,7 +10,20 @@ import {
   IconCircleNumber8,
   IconCircleNumber9,
 } from '@tabler/icons-react'
-import moment from 'moment'
+
+const icons = [
+  <IconCircleNumber1 color="#339AF0" size="2rem" />,
+  <IconCircleNumber2 color="#339AF0" size="2rem" />,
+  <IconCircleNumber3 color="#339AF0" size="2rem" />,
+  <IconCircleNumber4 color="#339AF0" size="2rem" />,
+  <IconCircleNumber5 color="#339AF0" size="2rem" />,
+  <IconCircleNumber6 color="#339AF0" size="2rem" />,
+  <IconCircleNumber7 color="#339AF0" size="2rem" />,
+  <IconCircleNumber8 color="#339AF0" size="2rem" />,
+  <IconCircleNumber9 color="#339AF0" size="2rem" />,
+]
+
+const points = ['10XP', '7XP', '5XP', '3XP', '2XP']
 
 const useStyles = createStyles((theme) => ({
   item: {
@@ -29,31 +42,15 @@ const useStyles = createStyles((theme) => ({
 export function LeaderboardCard({ item, index }) {
   //styles
   const { classes } = useStyles()
-  //mocks
-  const icons = [
-    <IconCircleNumber1 color="#339AF0" size="2rem" />,
-    <IconCircleNumber2 color="#339AF0" size="2rem" />,
-    <IconCircleNumber3 color="#339AF0" size="2rem" />,
-    <IconCircleNumber4 color="#339AF0" size="2rem" />,
-    <IconCircleNumber5 color="#339AF0" size="2rem" />,
-    <IconCircleNumber6 color="#339AF0" size="2rem" />,
-    <IconCircleNumber7 color="#339AF0" size="2rem" />,
-    <IconCircleNumber8 color="#339AF0" size="2rem" />,
-    <IconCircleNumber9 color="#339AF0" size="2rem" />,
-  ]
-  //function that defines the icon
-  const setIcon = (index) => {
-    return icons[index]
-  }
 
   return (
     <UnstyledButton key={item.id} className={classes.item}>
-      {setIcon(index)}
+      {icons[index]}
       <Text size="xs" mt={7}>
         {item.discord}
       </Text>
       <Text color="dimmed" size="xs">
-        {moment(item.createdAt).fromNow()}
+        {index < 5 ? points[index] : '1XP'}
       </Text>
     </UnstyledButton>
   )

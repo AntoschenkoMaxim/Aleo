@@ -12,11 +12,10 @@ import {
   Text,
   createStyles,
   SimpleGrid,
-  UnstyledButton,
 } from '@mantine/core'
 import {
   IconBrandDiscord,
-  IconQuestionCircle,
+  IconHelpHexagon,
   IconGift,
   IconAlertCircle,
   IconChecks,
@@ -178,12 +177,12 @@ export function QuestForm({
             {...form.getInputProps('discord')}
           />
         </Stepper.Step>
-        <Stepper.Step icon={<IconQuestionCircle size={18} />}>
+        <Stepper.Step icon={<IconHelpHexagon size={18} />}>
           <Image mt="md" radius="sm" src={image} />
           <TextInput
             mt="sm"
             withAsterisk
-            icon={<IconQuestionCircle size={18} />}
+            icon={<IconHelpHexagon size={18} />}
             label="Answer"
             placeholder="Your answer"
             {...form.getInputProps('answer')}

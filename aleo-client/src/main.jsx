@@ -5,6 +5,7 @@ import './index.css'
 import { MantineProvider } from '@mantine/core'
 import { Provider } from 'react-redux'
 import { store } from './redux'
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <MantineProvider
@@ -12,8 +13,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     withNormalizeCSS
     theme={{ colorScheme: 'dark' }}
   >
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </MantineProvider>
 )
