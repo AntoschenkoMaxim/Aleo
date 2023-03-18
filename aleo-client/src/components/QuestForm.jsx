@@ -7,7 +7,6 @@ import {
   Image,
   Grid,
   Col,
-  createStyles,
 } from '@mantine/core'
 import {
   IconBrandDiscord,
@@ -61,7 +60,7 @@ export function QuestForm({
             ? 'This discord handle is already exist!'
             : /^.{3,32}#[0-9]{4}$/.test(values.discord)
             ? null
-            : 'Wrong discord, please try again!',
+            : 'Wrong discord handle, please try again!',
         }
       }
       if (active === 1) {
@@ -75,7 +74,6 @@ export function QuestForm({
     },
   })
 
-  console.log(data)
   //local storage
   const updateActiveDiscord = () => {
     if (!form.validate().hasErrors) {
@@ -90,6 +88,7 @@ export function QuestForm({
       setActiveQuest(activeQuest + 1)
     }
   }
+
   //stepper
   const [active, setActive] = useState(0)
   const nextStep = () => {
@@ -149,7 +148,7 @@ export function QuestForm({
           />
         </Stepper.Step>
         <Stepper.Step icon={<IconHelpHexagon size={18} />}>
-          <Image mt="md" radius="sm" src={image} />
+          <Image mt="md" radius="sm" src={image} withPlaceholder />
           <TextInput
             mt="sm"
             withAsterisk

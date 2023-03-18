@@ -1,4 +1,11 @@
-import { Card, createStyles, Group, SimpleGrid, Text } from '@mantine/core'
+import {
+  Card,
+  createStyles,
+  Group,
+  SimpleGrid,
+  Skeleton,
+  Text,
+} from '@mantine/core'
 import { useGetUsersByQuestQuery } from '../redux/questApi'
 import { LeaderboardCard } from './index'
 
@@ -14,11 +21,17 @@ const useStyles = createStyles((theme) => ({
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     fontWeight: 700,
   },
+
+  loader: {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+  },
 }))
 
 export function Leaderboard({ questNumber }) {
   //styles
-  const { classes } = useStyles()
+  const { classes, theme } = useStyles()
 
   //RTK Query
   const limit = 9
@@ -40,8 +53,9 @@ export function Leaderboard({ questNumber }) {
           Quest {questNumber}
         </Text>
       </Group>
+
       <SimpleGrid cols={3} mt="md">
-        {items}
+        {isLoading ? <Skeleton height={90} radius="md" /> : items}
       </SimpleGrid>
     </Card>
   )
