@@ -83,70 +83,78 @@ export function List({ reference }) {
   ]
 
   //click function
-  const handleButtonClick = (number) => {
+  const handleButtonClick = (index) => {
     open()
     setModalProps({
-      questNumber: number,
-      title: `Quest ${number}`,
-      image: images[number - 1],
-      answer: answers[number - 1],
+      questNumber: index,
+      title: `Quest ${index}`,
+      image: images[index - 1],
+      answer: answers[index - 1],
     })
   }
 
   //mocks
   const mockdata = [
     {
+      index: 1,
       title: 'Quest 1',
       description:
         'Immerse yourself in an educationally adventurous journey through the world of Aleo!',
       icon: IconRotateRectangle,
       handleButtonClick: () => handleButtonClick(1),
-      disabled: 1,
+      index: 1,
     },
     {
+      index: 2,
       title: 'Quest 2',
       description:
         'Part of the way passed, but this is just the beginning, there are many more interesting ciphers ahead of you!',
       icon: IconWorldUpload,
       handleButtonClick: () => handleButtonClick(2),
-      disabled: 2,
+      index: 2,
     },
     {
+      index: 3,
       title: 'Quest 3',
       description:
         'Our adventure is in full swing, and everyone has a chance to take the lead.',
       icon: IconMoodCheck,
       handleButtonClick: () => handleButtonClick(3),
-      disabled: 3,
+      index: 3,
     },
     {
+      index: 4,
       title: 'Quest 4',
       description:
         "There's definitely no clue here, don't even get your hopes up. It's somewhere else, oops...",
       icon: IconExclamationCircle,
-      handleButtonClick: () => handleButtonClick(4),
-      disabled: 4,
+      handleButtonClick: () => handleButtonClick(index),
     },
     {
+      index: 5,
       title: 'Quest 5',
       description:
         "We're almost at the finish line, don't relax, decipher everything we see!",
       icon: IconSpy,
-      handleButtonClick: () => handleButtonClick(5),
-      disabled: 5,
+      handleButtonClick: () => handleButtonClick(index),
     },
     {
+      index: 6,
       title: 'Quest 6',
       description:
         "That's it, the final quest is here, don't even try to enter ALEO as the final answer, it definitely won't work!",
       icon: IconFlag,
-      handleButtonClick: () => handleButtonClick(6),
-      disabled: 6,
+      handleButtonClick: () => handleButtonClick(index),
     },
   ]
 
   const quests = mockdata.map((quest) => (
-    <QuestCard key={quest.title} quest={quest} activeQuest={activeQuest} />
+    <QuestCard
+      key={quest.title}
+      quest={quest}
+      activeQuest={activeQuest}
+      modalProps={modalProps}
+    />
   ))
 
   return (

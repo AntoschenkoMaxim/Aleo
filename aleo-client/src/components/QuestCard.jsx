@@ -1,5 +1,6 @@
 import { Button, Card, createStyles, Text, Modal } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+import { Leaderboard } from './index'
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -32,7 +33,7 @@ export function QuestCard({ quest, activeQuest }) {
   const { classes, theme } = useStyles()
 
   //destructurization
-  const { title, description, disabled, handleButtonClick } = quest
+  const { title, description, index, handleButtonClick } = quest
 
   //modals
   const [opened, { open, close }] = useDisclosure(false)
@@ -50,9 +51,9 @@ export function QuestCard({ quest, activeQuest }) {
       >
         {description}
       </Text>
-      {activeQuest <= disabled ? (
+      {activeQuest <= index ? (
         <Button
-          disabled={activeQuest !== disabled}
+          disabled={activeQuest !== index}
           onClick={handleButtonClick}
           fullWidth
         >
@@ -63,12 +64,9 @@ export function QuestCard({ quest, activeQuest }) {
           Leaderboard
         </Button>
       )}
-      <Modal
-        opened={opened}
-        onClose={close}
-        title="Leaderboard"
-        centered
-      ></Modal>
+      <Modal opened={opened} onClose={close} title="Leaderboard" centered>
+        <Leaderboard questNumber={index} />
+      </Modal>
     </Card>
   )
 }

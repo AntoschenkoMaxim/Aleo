@@ -7,11 +7,7 @@ import {
   Image,
   Grid,
   Col,
-  Card,
-  Group,
-  Text,
   createStyles,
-  SimpleGrid,
 } from '@mantine/core'
 import {
   IconBrandDiscord,
@@ -21,34 +17,8 @@ import {
   IconChecks,
 } from '@tabler/icons-react'
 import { useState } from 'react'
-import { useGetUsersByQuestQuery, useAddUserMutation } from '../redux/questApi'
-import { LeaderboardCard } from './LeaderboardCard'
-
-const useStyles = createStyles((theme) => ({
-  card: {
-    backgroundColor:
-      theme.colorScheme === 'dark'
-        ? theme.colors.dark[6]
-        : theme.colors.gray[0],
-  },
-
-  title: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-    fontWeight: 700,
-  },
-
-  item: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center',
-    borderRadius: theme.radius.md,
-    height: 90,
-    backgroundColor:
-      theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-  },
-}))
+import { useAddUserMutation } from '../redux/questApi'
+import { Leaderboard } from './index'
 
 export function QuestForm({
   modalProps,
@@ -58,8 +28,6 @@ export function QuestForm({
   activeQuest,
   setActiveQuest,
 }) {
-  //styles
-  const { classes } = useStyles()
   //destructurization
   const { questNumber, title, answer, image } = modalProps
   //forms
@@ -113,12 +81,8 @@ export function QuestForm({
   }
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current))
-  //redux
-  const limit = 9
-  const { data = [], isLoading } = useGetUsersByQuestQuery({
-    questNumber,
-    limit,
-  })
+
+  //RTK Query
   const [addUser, { isError }] = useAddUserMutation()
   const handleAddUser = async () => {
     await addUser({
@@ -145,10 +109,6 @@ export function QuestForm({
       ? 'Continue'
       : 'Next step'
   }
-
-  const items = data.map((item, index) => (
-    <LeaderboardCard key={item.id} item={item} index={index} />
-  ))
 
   return (
     <form>
@@ -202,17 +162,7 @@ export function QuestForm({
           </>
         </Stepper.Step>
         <Stepper.Completed>
-          <Card withBorder radius="md" className={classes.card}>
-            <Group position="apart">
-              <Text className={classes.title}>Winners</Text>
-              <Text size="xs" color="dimmed" sx={{ lineHeight: 1 }}>
-                + 21 other
-              </Text>
-            </Group>
-            <SimpleGrid cols={3} mt="md">
-              {items}
-            </SimpleGrid>
-          </Card>
+          <Leaderboard questNumber={questNumber} />
         </Stepper.Completed>
       </Stepper>
       <Grid mt="md" span={12}>

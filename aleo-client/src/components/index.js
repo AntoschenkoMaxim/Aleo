@@ -5,6 +5,7 @@ import { List } from './List'
 import { QuestCard } from './QuestCard'
 import { QuestForm } from './QuestForm'
 import { Works } from './Works'
+import { Leaderboard } from './Leaderboard'
 import { LeaderboardCard } from './LeaderboardCard'
 
 export {
@@ -15,5 +16,6 @@ export {
   QuestCard,
   QuestForm,
   Works,
+  Leaderboard,
   LeaderboardCard,
 }
