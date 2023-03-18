@@ -17,7 +17,7 @@ import {
   IconChecks,
 } from '@tabler/icons-react'
 import { useState } from 'react'
-import { useAddUserMutation } from '../redux/questApi'
+import { useAddUserMutation, useGetUsersByQuestQuery } from '../redux/questApi'
 import { Leaderboard } from './index'
 
 export function QuestForm({
@@ -30,6 +30,22 @@ export function QuestForm({
 }) {
   //destructurization
   const { questNumber, title, answer, image } = modalProps
+
+  //RTK Query
+  const limit = 9
+  const { data = [] } = useGetUsersByQuestQuery({
+    questNumber,
+    limit,
+  })
+  const [addUser] = useAddUserMutation()
+  const handleAddUser = async () => {
+    await addUser({
+      method: 'website',
+      discord: form.values.discord,
+      questNumber: questNumber,
+    }).unwrap()
+  }
+
   //forms
   const form = useForm({
     initialValues: {
@@ -39,8 +55,11 @@ export function QuestForm({
 
     validate: (values) => {
       if (active === 0) {
+        const discords = data.map((item) => item.discord)
         return {
-          discord: /^.{3,32}#[0-9]{4}$/.test(values.discord)
+          discord: discords.includes(values.discord)
+            ? 'This discord handle is already exist!'
+            : /^.{3,32}#[0-9]{4}$/.test(values.discord)
             ? null
             : 'Wrong discord, please try again!',
         }
@@ -55,6 +74,8 @@ export function QuestForm({
       }
     },
   })
+
+  console.log(data)
   //local storage
   const updateActiveDiscord = () => {
     if (!form.validate().hasErrors) {
@@ -81,16 +102,6 @@ export function QuestForm({
   }
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current))
-
-  //RTK Query
-  const [addUser, { isError }] = useAddUserMutation()
-  const handleAddUser = async () => {
-    await addUser({
-      method: 'website',
-      discord: form.values.discord,
-      questNumber: questNumber,
-    }).unwrap()
-  }
 
   const handleButtonEvents = () => {
     return active === 0

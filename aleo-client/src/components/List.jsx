@@ -102,7 +102,6 @@ export function List({ reference }) {
         'Immerse yourself in an educationally adventurous journey through the world of Aleo!',
       icon: IconRotateRectangle,
       handleButtonClick: () => handleButtonClick(1),
-      index: 1,
     },
     {
       index: 2,
@@ -111,7 +110,6 @@ export function List({ reference }) {
         'Part of the way passed, but this is just the beginning, there are many more interesting ciphers ahead of you!',
       icon: IconWorldUpload,
       handleButtonClick: () => handleButtonClick(2),
-      index: 2,
     },
     {
       index: 3,
@@ -120,7 +118,6 @@ export function List({ reference }) {
         'Our adventure is in full swing, and everyone has a chance to take the lead.',
       icon: IconMoodCheck,
       handleButtonClick: () => handleButtonClick(3),
-      index: 3,
     },
     {
       index: 4,
@@ -128,7 +125,7 @@ export function List({ reference }) {
       description:
         "There's definitely no clue here, don't even get your hopes up. It's somewhere else, oops...",
       icon: IconExclamationCircle,
-      handleButtonClick: () => handleButtonClick(index),
+      handleButtonClick: () => handleButtonClick(4),
     },
     {
       index: 5,
@@ -136,7 +133,7 @@ export function List({ reference }) {
       description:
         "We're almost at the finish line, don't relax, decipher everything we see!",
       icon: IconSpy,
-      handleButtonClick: () => handleButtonClick(index),
+      handleButtonClick: () => handleButtonClick(5),
     },
     {
       index: 6,
@@ -144,7 +141,7 @@ export function List({ reference }) {
       description:
         "That's it, the final quest is here, don't even try to enter ALEO as the final answer, it definitely won't work!",
       icon: IconFlag,
-      handleButtonClick: () => handleButtonClick(index),
+      handleButtonClick: () => handleButtonClick(6),
     },
   ]
 
