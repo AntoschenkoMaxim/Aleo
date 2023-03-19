@@ -31,7 +31,7 @@ export function QuestForm({
   const { questNumber, title, answer, image } = modalProps
 
   //RTK Query
-  const limit = 9
+  const limit = null
   const { data = [] } = useGetUsersByQuestQuery({
     questNumber,
     limit,
