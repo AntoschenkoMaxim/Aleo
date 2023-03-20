@@ -24,4 +24,6 @@ const start = async () => {
   }
 };
 
+console.log("Start");
+
 start();
