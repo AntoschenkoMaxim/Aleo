@@ -15,6 +15,7 @@ import { hero } from '../assets/index'
 const useStyles = createStyles((theme) => ({
   inner: {
     display: 'flex',
+    height: '100vh',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingBottom: theme.spacing.xl,
