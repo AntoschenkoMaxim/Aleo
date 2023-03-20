@@ -15,7 +15,6 @@ import { hero } from '../assets/index'
 const useStyles = createStyles((theme) => ({
   inner: {
     display: 'flex',
-    height: '100vh',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingBottom: theme.spacing.xl,
@@ -75,54 +74,51 @@ export function Hero({ scroll }) {
   const { classes } = useStyles()
 
   return (
-    <div>
-      <Container>
-        <div className={classes.inner}>
-          <div className={classes.content}>
-            <Title className={classes.title}>
-              This is <span className={classes.highlight}>Quests</span> about{' '}
-              <br /> Aleo Eco-System
-            </Title>
-            <Text color="dimmed" mt="md">
-              Educational quests to test your knowledge of ZKP and Aleo
-              technology
-            </Text>
+    <Container mt={45}>
+      <div className={classes.inner}>
+        <div className={classes.content}>
+          <Title className={classes.title}>
+            This is <span className={classes.highlight}>Quests</span> about{' '}
+            <br /> Aleo Eco-System
+          </Title>
+          <Text color="dimmed" mt="md">
+            Educational quests to test your knowledge of ZKP and Aleo technology
+          </Text>
 
-            <List
-              mt={30}
-              spacing="sm"
-              size="sm"
-              icon={
-                <ThemeIcon size={20} radius="xl">
-                  <IconCheck size={12} stroke={1.5} />
-                </ThemeIcon>
-              }
+          <List
+            mt={45}
+            spacing="sm"
+            size="sm"
+            icon={
+              <ThemeIcon size={20} radius="xl">
+                <IconCheck size={12} stroke={1.5} />
+              </ThemeIcon>
+            }
+          >
+            <List.Item>
+              <b>Aleo Points</b> – be one of the first to complete our quests
+              and get points (it is a means of payment in the Aleo Ambassador
+              program).
+            </List.Item>
+            <List.Item mt={30}>
+              <b>NFT Collection</b> – art from the collection of early and
+              interested members of the Aleo community.
+            </List.Item>
+          </List>
+
+          <Group mt={60}>
+            <Button
+              fullWidth
+              size="md"
+              className={classes.control}
+              onClick={() => scroll({ alignment: 'start' })}
             >
-              <List.Item>
-                <b>Aleo Points</b> – be one of the first to complete our quests
-                and get points (it is a means of payment in the Aleo Ambassador
-                program).
-              </List.Item>
-              <List.Item>
-                <b>NFT Collection</b> – art from the collection of early and
-                interested members of the Aleo community.
-              </List.Item>
-            </List>
-
-            <Group mt={30}>
-              <Button
-                fullWidth
-                size="md"
-                className={classes.control}
-                onClick={() => scroll({ alignment: 'start' })}
-              >
-                Get started
-              </Button>
-            </Group>
-          </div>
-          <Image src={hero} className={classes.image} />
+              Get started
+            </Button>
+          </Group>
         </div>
-      </Container>
-    </div>
+        <Image src={hero} className={classes.image} />
+      </div>
+    </Container>
   )
 }
