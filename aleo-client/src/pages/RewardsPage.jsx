@@ -6,7 +6,6 @@ import {
   Title,
   Text,
   rem,
-  SimpleGrid,
 } from '@mantine/core'
 import { nft1, nft2 } from '../assets/index'
 
@@ -40,16 +39,6 @@ export function RewardsPage() {
   //styles
   const { classes } = useStyles()
 
-  const BASE_HEIGHT = 360
-
-  const getFirstChild = (height) => (
-    <Image src={nft1} height={height} radius="md" animate={false} />
-  )
-
-  const getSecondChild = (height) => (
-    <Image src={nft2} height={height} radius="md" animate={false} />
-  )
-
   return (
     <Container my="md">
       <Grid>
@@ -69,11 +58,11 @@ export function RewardsPage() {
             NFTs that are built on the Aleo blockchain.
           </Text>
         </Grid.Col>
-        <Grid.Col xs={12}>
-          <SimpleGrid cols={2} breakpoints={[{ maxWidth: 'xs', cols: 1 }]}>
-            {getFirstChild(BASE_HEIGHT)}
-            {getSecondChild(BASE_HEIGHT)}
-          </SimpleGrid>
+        <Grid.Col xs={6}>
+          <Image src={nft1} radius="md" />
+        </Grid.Col>
+        <Grid.Col xs={6}>
+          <Image src={nft2} radius="md" />
         </Grid.Col>
       </Grid>
     </Container>
