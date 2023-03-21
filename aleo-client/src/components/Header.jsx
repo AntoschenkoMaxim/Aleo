@@ -96,11 +96,10 @@ const useStyles = createStyles((theme) => ({
 export function HeaderMenu() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false)
-  const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false)
   const { classes, theme } = useStyles()
 
   return (
-    <Container pb={60}>
+    <Container pb={20}>
       <Header height={60}>
         <Group position="apart" sx={{ height: '100%' }}>
           <Group>

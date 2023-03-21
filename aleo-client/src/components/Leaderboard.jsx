@@ -5,7 +5,9 @@ import {
   SimpleGrid,
   Skeleton,
   Text,
+  rem,
 } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 import { useGetUsersByQuestQuery } from '../redux/questApi'
 import { LeaderboardCard } from './index'
 
@@ -32,7 +34,7 @@ const useStyles = createStyles((theme) => ({
 export function Leaderboard({ questNumber }) {
   //styles
   const { classes, theme } = useStyles()
-
+  const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`)
   //RTK Query
   const limit = 9
   const { data = [], isLoading } = useGetUsersByQuestQuery({
@@ -54,8 +56,8 @@ export function Leaderboard({ questNumber }) {
         </Text>
       </Group>
 
-      <SimpleGrid cols={3} mt="md">
-        {isLoading ? <Skeleton height={90} radius="md" /> : items}
+      <SimpleGrid cols={mobile ? 2 : 3} mt="md">
+        {isLoading ? <Skeleton height={rem(90)} radius="md" /> : items}
       </SimpleGrid>
     </Card>
   )

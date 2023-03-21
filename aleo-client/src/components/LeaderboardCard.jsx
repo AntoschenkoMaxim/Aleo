@@ -1,4 +1,4 @@
-import { createStyles, Text, UnstyledButton } from '@mantine/core'
+import { createStyles, Text, UnstyledButton, rem } from '@mantine/core'
 import {
   IconCircleNumber1,
   IconCircleNumber2,
@@ -33,7 +33,7 @@ const useStyles = createStyles((theme) => ({
     justifyContent: 'center',
     textAlign: 'center',
     borderRadius: theme.radius.md,
-    height: 90,
+    height: rem(90),
     backgroundColor:
       theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
   },

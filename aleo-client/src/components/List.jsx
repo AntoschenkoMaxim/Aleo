@@ -5,6 +5,7 @@ import {
   SimpleGrid,
   Container,
   Modal,
+  rem,
 } from '@mantine/core'
 import { useState } from 'react'
 import { useDisclosure, useLocalStorage } from '@mantine/hooks'
@@ -22,10 +23,10 @@ import { QuestCard, QuestForm } from './index'
 
 const useStyles = createStyles((theme) => ({
   title: {
-    fontSize: 34,
+    fontSize: rem(34),
     fontWeight: 900,
     [theme.fn.smallerThan('sm')]: {
-      fontSize: 24,
+      fontSize: rem(24),
     },
   },
 
@@ -37,8 +38,8 @@ const useStyles = createStyles((theme) => ({
       content: '""',
       display: 'block',
       backgroundColor: theme.fn.primaryColor(),
-      width: 45,
-      height: 2,
+      width: rem(45),
+      height: rem(2),
       marginTop: theme.spacing.sm,
       marginLeft: 'auto',
       marginRight: 'auto',

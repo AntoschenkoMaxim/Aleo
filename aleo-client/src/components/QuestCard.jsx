@@ -1,4 +1,4 @@
-import { Button, Card, createStyles, Text, Modal } from '@mantine/core'
+import { Button, Card, createStyles, Text, Modal, rem } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { Leaderboard } from './index'
 
@@ -7,7 +7,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    border: `1px solid ${
+    border: `${rem(1)} solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]
     }`,
   },
@@ -17,8 +17,8 @@ const useStyles = createStyles((theme) => ({
       content: '""',
       display: 'block',
       backgroundColor: theme.fn.primaryColor(),
-      width: 45,
-      height: 2,
+      width: rem(45),
+      height: rem(2),
       marginTop: theme.spacing.sm,
     },
   },

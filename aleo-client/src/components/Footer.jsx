@@ -1,4 +1,11 @@
-import { createStyles, Container, Group, ActionIcon, Text } from '@mantine/core'
+import {
+  createStyles,
+  Container,
+  Group,
+  ActionIcon,
+  Text,
+  rem,
+} from '@mantine/core'
 import {
   IconBrandTwitter,
   IconBrandDiscord,
@@ -14,8 +21,8 @@ const useStyles = createStyles((theme) => ({
   },
 
   footer: {
-    marginTop: 120,
-    borderTop: `1px solid ${
+    marginTop: rem(120),
+    borderTop: `${rem(1)} solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
     }`,
   },
