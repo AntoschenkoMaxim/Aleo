@@ -7,9 +7,6 @@ import {
   Text,
   rem,
   SimpleGrid,
-  Stack,
-  px,
-  useMantineTheme,
 } from '@mantine/core'
 import { nft1, nft2 } from '../assets/index'
 
@@ -42,11 +39,8 @@ const useStyles = createStyles((theme) => ({
 export function RewardsPage() {
   //styles
   const { classes } = useStyles()
-  const theme = useMantineTheme()
 
   const BASE_HEIGHT = 360
-  const getSubHeight = (children, spacing) =>
-    BASE_HEIGHT / children - spacing * ((children - 1) / children)
 
   const getFirstChild = (height) => (
     <Image src={nft1} height={height} radius="md" animate={false} />
@@ -54,31 +48,6 @@ export function RewardsPage() {
 
   const getSecondChild = (height) => (
     <Image src={nft2} height={height} radius="md" animate={false} />
-  )
-
-  const getThirdChild = (height) => (
-    <Title className={classes.title}>
-      About our <br />
-      NFTs
-    </Title>
-  )
-
-  const getFourthChild = (height) => (
-    <Text height={height} radius="md" color="dimmed">
-      The NFTs have varying rarity and unique characteristics, and a total of
-      500 will be distributed to ambassadors and quest winners.
-    </Text>
-  )
-
-  const getFivethChild = (height) => (
-    <Title className={classes.title}>Engaging experience</Title>
-  )
-
-  const getSixthChild = (height) => (
-    <Text height={height} radius="md" color="dimmed">
-      This system provides multiple ways for learners to earn rewards and
-      participate in the ecosystem, creating an engaging experience.
-    </Text>
   )
 
   return (
@@ -101,17 +70,9 @@ export function RewardsPage() {
           </Text>
         </Grid.Col>
         <Grid.Col xs={12}>
-          <SimpleGrid cols={4} breakpoints={[{ maxWidth: 'xs', cols: 1 }]}>
+          <SimpleGrid cols={2} breakpoints={[{ maxWidth: 'xs', cols: 1 }]}>
             {getFirstChild(BASE_HEIGHT)}
-            <Stack>
-              {getThirdChild(getSubHeight(2, px(theme.spacing.md)))}
-              {getFourthChild(getSubHeight(1, px(theme.spacing.md)))}
-            </Stack>
             {getSecondChild(BASE_HEIGHT)}
-            <Stack>
-              {getFivethChild(getSubHeight(2, px(theme.spacing.md)))}
-              {getSixthChild(getSubHeight(1, px(theme.spacing.md)))}
-            </Stack>
           </SimpleGrid>
         </Grid.Col>
       </Grid>
