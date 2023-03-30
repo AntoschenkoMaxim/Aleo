@@ -96,11 +96,6 @@ export function Hero({ scroll }) {
               }
             >
               <List.Item>
-                <b>Aleo Points</b> – be one of the first to complete our quests
-                and get points (it is a means of payment in the Aleo Ambassador
-                program).
-              </List.Item>
-              <List.Item>
                 <b>NFT Collection</b> – art from the collection of early and
                 interested members of the Aleo community.
               </List.Item>

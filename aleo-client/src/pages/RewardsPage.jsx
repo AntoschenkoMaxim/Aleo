@@ -54,8 +54,8 @@ export function RewardsPage() {
             mt="md"
           >
             The Aleo Quests offers a rewards system for learners who participate
-            in educational activities. Users can earn Aleo points and unique
-            NFTs that are built on the Aleo blockchain.
+            in educational activities. Users can earn unique NFTs that are built
+            on the Aleo blockchain.
           </Text>
         </Grid.Col>
         <Grid.Col xs={6}>

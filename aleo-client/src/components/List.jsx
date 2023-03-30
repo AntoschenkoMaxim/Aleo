@@ -112,38 +112,38 @@ export function List({ reference }) {
       icon: IconWorldUpload,
       handleButtonClick: () => handleButtonClick(2),
     },
-    {
-      index: 3,
-      title: 'Quest 3',
-      description:
-        'Our adventure is in full swing, and everyone has a chance to take the lead.',
-      icon: IconMoodCheck,
-      handleButtonClick: () => handleButtonClick(3),
-    },
-    {
-      index: 4,
-      title: 'Quest 4',
-      description:
-        "There's definitely no clue here, don't even get your hopes up. It's somewhere else, oops...",
-      icon: IconExclamationCircle,
-      handleButtonClick: () => handleButtonClick(4),
-    },
-    {
-      index: 5,
-      title: 'Quest 5',
-      description:
-        "We're almost at the finish line, don't relax, decipher everything we see!",
-      icon: IconSpy,
-      handleButtonClick: () => handleButtonClick(5),
-    },
-    {
-      index: 6,
-      title: 'Quest 6',
-      description:
-        "That's it, the final quest is here, don't even try to enter ALEO as the final answer, it definitely won't work!",
-      icon: IconFlag,
-      handleButtonClick: () => handleButtonClick(6),
-    },
+    // {
+    //   index: 3,
+    //   title: 'Quest 3',
+    //   description:
+    //     'Our adventure is in full swing, and everyone has a chance to take the lead.',
+    //   icon: IconMoodCheck,
+    //   handleButtonClick: () => handleButtonClick(3),
+    // },
+    // {
+    //   index: 4,
+    //   title: 'Quest 4',
+    //   description:
+    //     "There's definitely no clue here, don't even get your hopes up. It's somewhere else, oops...",
+    //   icon: IconExclamationCircle,
+    //   handleButtonClick: () => handleButtonClick(4),
+    // },
+    // {
+    //   index: 5,
+    //   title: 'Quest 5',
+    //   description:
+    //     "We're almost at the finish line, don't relax, decipher everything we see!",
+    //   icon: IconSpy,
+    //   handleButtonClick: () => handleButtonClick(5),
+    // },
+    // {
+    //   index: 6,
+    //   title: 'Quest 6',
+    //   description:
+    //     "That's it, the final quest is here, don't even try to enter ALEO as the final answer, it definitely won't work!",
+    //   icon: IconFlag,
+    //   handleButtonClick: () => handleButtonClick(6),
+    // },
   ]
 
   const quests = mockdata.map((quest) => (
